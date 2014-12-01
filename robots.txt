@@ -1,0 +1,8 @@
+User-agent: LinkChecker
+Disallow:
+
+User-agent: panscient.com
+Disallow: /
+
+User-agent: *
+Disallow:

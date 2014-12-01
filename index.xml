@@ -1,0 +1,127 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:whatsmychaincert="http://xmlns.sslmate.com/whatsmychaincert" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>What's My Chain Cert?</title>
+    <meta name="robots" content="noarchive" />
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="assets/css/style.css" />
+    <noscript>
+      <link rel="stylesheet" type="text/css" media="screen,projection" href="assets/css/noscript.css" />
+    </noscript>
+	<script type="text/javascript" src="assets/js/script.js">
+	</script>
+	<script type="text/javascript">
+		whatsmychaincert_endpoint = '<whatsmychaincert:endpoint/>';
+	</script>
+  </head>
+  <body>
+    <div id="root">
+		<div id="masthead">
+			<h1>What's My Chain Cert?</h1>
+			<p class="by">By <a href="https://sslmate.com">SSLMate</a></p>
+		</div>
+
+		<p>
+			Did you know that when you install an SSL certificate, you have to install
+			not only your site's certificate, but also one or more intermediate (a.k.a. chain)
+			certificates?  Failure to install the correct chain can cause certificate
+			errors in browsers, driving visitors away from your site.  To complicate matters,
+			browsers cache chain certificates, meaning that an improperly-configured
+			chain could work in some browsers but not others, making this an annoying problem
+			to debug.  <!--And to make matters even worse, many certificate vendors don't tell you
+			about intermediate certificates, or make it needlessly difficult to find them.-->
+		</p>
+		<p>
+			This site tests if your server is serving the correct certificate chain,
+			tells you what chain you <em>should</em> be serving, and helps you configure your
+			server to serve it.
+		</p>
+
+		<div class="test">
+			<h2>Test Your Server</h2>
+			<div class="box">
+				<div id="test_results">
+				</div>
+				<form method="GET" whatsmychaincert:action="test" onsubmit="return test_form_submit(this);">
+					<input type="text" name="host" placeholder="example.com" size="25"/>
+					<input type="submit" name="submit_btn" value="Test"/>
+				</form>
+				<p class="instructions">Checks port 443 (HTTPS) by default. For a different port, specify it with the hostname like: <code>example.com:993</code></p>
+			</div>
+		</div>
+		<div class="generate">
+			<h2>Generate the Correct Chain</h2>
+			<div class="box">
+				<p>
+					Paste your certificate in the box below to generate the correct chain for it,
+					based on the metadata embedded in the certificate.
+					<a href="https://github.com/SSLMate/mkcertchain">How does this work?</a>
+				</p>
+				<form method="POST" whatsmychaincert:action="generate">
+					<p><textarea name="pem" rows="8" cols="80"></textarea></p>
+					<p><input type="submit" name="submit_btn" value="Generate Chain"/></p>
+				</form>
+			</div>
+		</div>
+		<div class="config">
+			<h2>Configure Your Server</h2>
+
+			<p>
+				Note: some software requires you to put your site's certificate
+				(e.g. <code>example.com.crt</code>)
+				and your chain certificates (e.g. <code>example.com.chain.crt</code>) in separate files, while other
+				software requires you to put your chain certificates <em>after</em>
+				your site's certificate in the same file.
+			</p>
+
+			<p>
+				You can generate the combined file (<code>example.com.chained.crt</code>) with a command such as:
+			</p>
+			<p>
+				<code class="block">cat example.com.crt example.com.chain.crt &gt; example.com.chained.crt</code>
+			</p>
+			<!--
+			-->
+
+			<!--
+			<p>
+				Note: some software requires you to put your site's certificate
+				and your chain certificates in in separate files, while other
+				software requires you to put your chain certificates <em>after</em>
+				your site's certificate in the same file.
+			</p>
+
+			<p>
+				These config snippets use the following example filenames:
+			</p>
+
+			<ul>
+				<li><code>example.com.key</code> &#x2013; your certificate's private key</li>
+				<li><code>example.com.crt</code> &#x2013; your site's certificate, obtained from your certificate vendor</li>
+				<li><code>example.com.chain.crt</code> &#x2013; chain certificates, as generated above</li>
+				<li><code>example.com.chained.crt</code> &#x2013; your site's certificate followed by its chain certificates</li>
+			</ul>
+
+			<p>
+				You can generate <code>example.com.chained.crt</code> with a command such as:
+			</p>
+			<p>
+				<code class="block">cat example.com.crt example.com.chain.crt &gt; example.com.chained.crt</code>
+			</p>
+			-->
+
+			<div class="box">
+				<whatsmychaincert:configguide/>
+			</div>
+		</div>
+		<div class="moreinfo">
+			<h2>A Better Way to Buy and Manage SSL Certs</h2>
+
+			<p>
+				<a href="https://sslmate.com">SSLMate</a> lets you buy SSL certs from
+				the command line.  SSLMate automates away the error-prone tedium of CSR generation,
+				certificate chain assembly, and renewals.
+			</p>
+		</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+#!/bin/ksh
+
+template_dir=${SSLMATE_DATADIR:?}/configguide
+software=$(< ${SSLMATE_DATADIR:?}/configguide.index)
+
+print "<!-- mkconfigguide -->"
+print "<form id=\"configguide\" xmlns=\"http://www.w3.org/1999/xhtml\">"
+print "\t<p class=\"select\">"
+print "\t\tChoose your software:"
+print "\t\t<select name=\"snippet\" onchange=\"select_configguide_snippet(this.value);\">"
+print -r -- "$software" | while read name title
+do
+	print "\t\t\t<option value=\"$(escape_xml "$name")\">$(escape_xml "$title")</option>"
+done
+print "\t\t</select>"
+print "\t</p>"
+
+once=0
+print -r -- "$software" | while read name title
+do
+	if (( once ))
+	then
+		selected_class=
+	else
+		selected_class=" configguide_snippet_selected"
+		once=1
+	fi
+
+	print "\t<div class=\"configguide_snippet configguide_snippet_${name}${selected_class}\">"
+	print "\t\t<h4>${title}</h4>"
+	print "\t\t<div class=\"terminal\">"
+	sed -e 's|__KEY_PATH__|/path/to/example.com.key|g' \
+	    -e 's|__CERT_PATH__|/path/to/example.com.crt|g' \
+	    -e 's|__CHAIN_PATH__|/path/to/example.com.chain.crt|g' \
+	    -e 's|__CHAINED_PATH__|/path/to/example.com.chained.crt|g' \
+	    < "$template_dir/${name}" | while IFS=$'\n' read -r line
+	do
+		print "\t\t\t<p>$(escape_xml "$line")</p>"
+	done
+	print "\t\t</div>"
+	print "\t</div>"
+
+done
+
+print "</form>"
+print "<!-- /mkconfigguide -->"

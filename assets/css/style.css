@@ -1,0 +1,35 @@
+html, body { color: black; background: white; font-family: sans-serif; }
+a:link { color: #00A; }
+a:visited { color: #639; }
+a[href]:hover, a[href]:focus { color: #06F; }
+a:active { color: #669; }
+a, a:link, a:hover, a:visited, a:active { text-decoration: underline; }
+#masthead { text-align: center; margin: 2.5em 0; }
+#masthead p.by { margin: 1em 0 0 0; }
+h1 { font-size: 250%; text-align: center; margin: 0; }
+h2 { margin: 1em 0 0.4em 0; }
+#root { max-width: 800px; margin: 0 auto; font-size: 120%; line-height: 160%; text-align: justify; }
+.box { background: #eee; border-radius: 8px; padding: 0.5em; line-height: 130%; }
+.test input { font-size: 160%; }
+.test input[type=text] { background: #FCFCFC; }
+.test form { margin: 0 0 0.5em 0; }
+.generate input { font-size: 130%; }
+.generate form { margin: 0.5em 0 0 0; }
+.generate textarea { width: 99%; margin-bottom: 0.7em; background: #FCFCFC; }
+.box p { margin: 0; }
+.instructions { font-size: 70%; }
+code.block { display: block; background: #eee; border-radius: 4px; padding: 0.2em 0.5em; font-size: 90%; }
+.config select { font-size: 110%; }
+
+#configguide h4 { display: none; }
+#configguide p.select { margin-bottom: 0.5em; }
+#configguide .configguide_snippet { display: none; }
+#configguide .configguide_snippet_selected { display: block; }
+
+.terminal { font-family: monospace; overflow: auto; white-space: nowrap; background: white; margin: 0; text-align: left; background: #FCFCFC; border: solid #DDD 1px; border-radius: 5px; padding: 3px 5px; color: black; }
+.terminal p { margin: 0; white-space: pre; }
+
+#test_results { font-size: 140%; line-height: 140%; text-align: left; }
+#test_results p { margin: 0 0 0.5em 0; }
+#test_results .result_trusted { color: #060; font-weight: bold; }
+#test_results .result_untrusted { color: #900; font-weight: bold; }
