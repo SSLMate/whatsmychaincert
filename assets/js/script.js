@@ -1,4 +1,5 @@
 var		whatsmychaincert_endpoint;
+var		current_test_host = null;
 
 var		create_element;
 
@@ -163,6 +164,9 @@ function do_test (host)
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4) {
+			if (host != current_test_host) {
+				return;
+			}
 			if (xhr.status != 200) {
 				handle_test_error(xhr.responseText);
 			} else if (xhr.getResponseHeader("Content-Type") != "application/json") {
@@ -172,6 +176,7 @@ function do_test (host)
 			}
 		}
 	};
+	current_test_host = host;
 	xhr.open("GET", uri);
 	xhr.send();
 }
