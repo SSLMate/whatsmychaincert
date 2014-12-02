@@ -148,6 +148,11 @@ function handle_test_error (message)
 function test_form_submit (form)
 {
 	var host = form.host.value;
+	var re = /^https?:\/\/([^\/]*)/;
+	var match = re.exec(host);
+	if (match) {
+		host = match[1];
+	}
 	if (host == "") {
 		return false;
 	}
