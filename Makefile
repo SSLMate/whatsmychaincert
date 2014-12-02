@@ -1,12 +1,15 @@
 ENDPOINT =
-FILES = index.html robots.txt
+FILES = index.html index.htmlgz robots.txt
 
 -include config.mk
 
-all: index.html
+all: index.html index.htmlgz
 
 index.html: index.xml helpers/whatsmychaincert.xslt configguide.xml
 	xsltproc --stringparam endpoint "$(ENDPOINT)" helpers/whatsmychaincert.xslt index.xml > $@
+
+index.htmlgz: index.html
+	gzip -n9 < $< > $@
 
 configguide.xml: helpers/mkconfigguide
 	helpers/mkconfigguide > $@
