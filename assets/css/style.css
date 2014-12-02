@@ -31,5 +31,7 @@ code.block { display: block; background: #eee; border-radius: 4px; padding: 0.2e
 
 #test_results { font-size: 140%; line-height: 140%; text-align: left; }
 #test_results p { margin: 0 0 0.5em 0; }
+#test_results p.test_error { color: #F40; }
 #test_results .result_trusted { color: #060; font-weight: bold; }
 #test_results .result_untrusted { color: #900; font-weight: bold; }
+#test_results .result_error { color: #F40; }
