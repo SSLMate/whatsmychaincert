@@ -7,6 +7,9 @@ if (typeof(document.createElementNS) == "function" && document.documentElement.n
 else
 	create_element = function (name) { return document.createElement(name); }
 
+var		has_push_state = ("pushState" in history) && typeof(history.pushState) == "function" &&
+	                        ("replaceState" in history) && typeof(history.replaceState) == "function";
+
 function add_class (element, className)
 {
 	if (!has_class(element, className)) {
@@ -25,6 +28,15 @@ function has_class (element, className)
 {
 	var regexp = new RegExp("(^|\\s)" + className + "(\\s|$)");
 	return regexp.test(element.className);
+}
+
+function canonical_url (test_host)
+{
+	var url = location.protocol + "//" + location.host + location.pathname;
+	if (test_host) {
+		url += "?" + encodeURIComponent(test_host);
+	}
+	return url;
 }
 
 function add_test_result (host, ip_address, type, text)
@@ -138,7 +150,16 @@ function test_form_submit (form)
 	if (host == "") {
 		return false;
 	}
-	var uri = form.action + "?host=" + encodeURIComponent(host);
+	if (has_push_state) {
+		history.pushState(host, null, canonical_url(host));
+	}
+	do_test(host);
+	return false;
+}
+
+function do_test (host)
+{
+	var uri = whatsmychaincert_endpoint + "/test?host=" + encodeURIComponent(host);
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4) {
@@ -153,7 +174,6 @@ function test_form_submit (form)
 	};
 	xhr.open("GET", uri);
 	xhr.send();
-	return false;
 }
 
 function select_configguide_snippet (snippet)
@@ -171,7 +191,28 @@ function select_configguide_snippet (snippet)
 	}
 }
 
-window.onload = function () {
+function restore_state (test_host)
+{
+	var test_form = document.getElementById('test_form');
+	if (test_host) {
+		test_form.host.value = test_host;
+		do_test(test_host);
+	} else {
+		test_form.reset();
+		clear_test_results();
+	}
+	if (has_push_state) {
+		history.replaceState(test_host, null, canonical_url(test_host));
+	}
+}
+
+window.onload = function ()
+{
 	var cg = document.getElementById('configguide');
 	select_configguide_snippet(cg.snippet.value);
+	restore_state(location.search ? location.search.substr(1) : null);
+}
+window.onpopstate = function (ev)
+{
+	restore_state(ev.state);
 }

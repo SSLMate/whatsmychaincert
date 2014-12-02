@@ -41,7 +41,7 @@
 			<div class="box">
 				<div id="test_results">
 				</div>
-				<form method="GET" whatsmychaincert:action="test" onsubmit="return test_form_submit(this);">
+				<form id="test_form" method="GET" whatsmychaincert:action="test" onsubmit="return test_form_submit(this);">
 					<input type="text" name="host" placeholder="example.com" size="25"/>
 					<input type="submit" name="submit_btn" value="Test"/>
 				</form>
