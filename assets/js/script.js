@@ -120,6 +120,18 @@ function handle_test_results (host, result)
 	}
 }
 
+function handle_test_error (message)
+{
+	clear_test_results();
+
+	var results = document.getElementById("test_results");
+	var result = create_element("p");
+	result.className = "test_error";
+	result.appendChild(document.createTextNode(message));
+	results.appendChild(result);
+	add_class(results, "has_results");
+}
+
 function test_form_submit (form)
 {
 	var host = form.host.value;
@@ -131,9 +143,9 @@ function test_form_submit (form)
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4) {
 			if (xhr.status != 200) {
-				alert(xhr.responseText);
+				handle_test_error(xhr.responseText);
 			} else if (xhr.getResponseHeader("Content-Type") != "application/json") {
-				alert("Received an unexpected response from the server.");
+				handle_test_error("Received an unexpected response from the server.");
 			} else {
 				handle_test_results(host, eval("(" + xhr.responseText + ")"));
 			}
