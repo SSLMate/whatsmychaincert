@@ -1,7 +1,10 @@
 ENDPOINT =
 FILES = index.html index.htmlgz robots.txt
+TLSCONFIGGUIDE = ../tlsconfigguide
 
 -include config.mk
+
+export TLSCONFIGGUIDE
 
 all: index.html index.htmlgz
 
@@ -11,7 +14,7 @@ index.html: index.xml helpers/whatsmychaincert.xslt configguide.xml
 index.htmlgz: index.html
 	gzip -n9 < $< > $@
 
-configguide.xml: helpers/mkconfigguide
+configguide.xml: helpers/mkconfigguide $(TLSCONFIGGUIDE)/templates.index
 	helpers/mkconfigguide > $@
 
 clean:
