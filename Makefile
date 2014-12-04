@@ -1,6 +1,6 @@
 INSTALL = install
 INSTALL_WEBASSETS = cp -dR
-ENDPOINT =
+ENDPOINT = https://whatsmychaincert.com
 FILES = index.html index.htmlgz robots.txt
 TLSCONFIGGUIDE = ../tlsconfigguide
 
