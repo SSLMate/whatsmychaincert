@@ -35,7 +35,7 @@ function canonical_url (test_host)
 {
 	var url = location.protocol + "//" + location.host + location.pathname;
 	if (test_host) {
-		url += "?" + encodeURIComponent(test_host);
+		url += "?" + encodeURI(test_host);
 	}
 	return url;
 }
@@ -220,7 +220,7 @@ window.onload = function ()
 {
 	var cg = document.getElementById('configguide');
 	select_configguide_snippet(cg.snippet.value);
-	restore_state(location.search ? decodeURIComponent(location.search.substr(1)) : null);
+	restore_state(location.search ? decodeURI(location.search.substr(1)) : null);
 }
 window.onpopstate = function (ev)
 {
