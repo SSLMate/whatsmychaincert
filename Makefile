@@ -1,3 +1,5 @@
+INSTALL = install
+INSTALL_WEBASSETS = cp -dR
 ENDPOINT =
 FILES = index.html index.htmlgz robots.txt
 TLSCONFIGGUIDE = ../tlsconfigguide
@@ -22,9 +24,9 @@ clean:
 
 ifneq ($(DESTDIR),)
 install: $(FILES)
-	install -m 755 -d $(DESTDIR)
-	install -m 644 $(FILES) $(DESTDIR)/
-	install-webassets assets/ $(DESTDIR)/assets
+	$(INSTALL) -m 755 -d $(DESTDIR)
+	$(INSTALL) -m 644 $(FILES) $(DESTDIR)/
+	$(INSTALL_WEBASSETS) assets/ $(DESTDIR)/assets
 else
 install:
 	@echo "Please set DESTDIR variable to use 'make install'"
