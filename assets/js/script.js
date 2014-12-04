@@ -220,7 +220,7 @@ window.onload = function ()
 {
 	var cg = document.getElementById('configguide');
 	select_configguide_snippet(cg.snippet.value);
-	restore_state(location.search ? location.search.substr(1) : null);
+	restore_state(location.search ? decodeURIComponent(location.search.substr(1)) : null);
 }
 window.onpopstate = function (ev)
 {
