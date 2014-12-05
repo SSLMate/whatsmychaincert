@@ -4,12 +4,14 @@ a:visited { color: #639; }
 a[href]:hover, a[href]:focus { color: #06F; }
 a:active { color: #669; }
 a, a:link, a:hover, a:visited, a:active { text-decoration: underline; }
-#masthead { text-align: center; margin: 2.5em 0; }
-#masthead p.by { margin: 1em 0 0 0; }
+#masthead { text-align: center; margin: 2em 0; }
+#masthead p.by { margin: 0.5em 0 0 0; }
 h1 { font-size: 250%; text-align: center; margin: 0; }
 h2 { margin: 1em 0 0.4em 0; }
-#root { max-width: 800px; margin: 0 auto; font-size: 120%; line-height: 160%; text-align: justify; }
-.box { background: #eee; border-radius: 8px; padding: 0.5em; line-height: 130%; }
+#root { max-width: 800px; margin: 0 auto; font-size: 120%; text-align: justify; }
+#root p { line-height: 160%; }
+.box { background: #eee; border-radius: 8px; padding: 0.5em; }
+#root .box p { line-height: 130%; }
 .test input { font-size: 160%; }
 .test input[type=text] { background: #FCFCFC; }
 .test form { margin: 0 0 0.5em 0; }
@@ -18,7 +20,7 @@ h2 { margin: 1em 0 0.4em 0; }
 .generate textarea { width: 99%; margin-bottom: 0.7em; background: #FCFCFC; }
 .box p { margin: 0; }
 .instructions { font-size: 70%; }
-code.block { display: block; background: #eee; border-radius: 4px; padding: 0.2em 0.5em; font-size: 90%; }
+code.block { display: block; background: #eee; border-radius: 4px; padding: 0.2em 0.5em; font-size: 90%; text-align: left; }
 .config select { font-size: 110%; }
 
 #configguide h4 { display: none; }
