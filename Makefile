@@ -1,3 +1,9 @@
+#
+# Copyright (c) 2014 Opsmate, Inc.
+#
+# See COPYING file for license information.
+#
+
 INSTALL = install
 INSTALL_WEBASSETS = cp -dR
 ENDPOINT = https://whatsmychaincert.com

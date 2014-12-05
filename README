@@ -1,0 +1,27 @@
+This repository contains the source code for the frontend of
+<https://whatsmychaincert.com>, a website that helps you test and
+configure SSL chain certificates.  whatsmychaincert.com tests if your
+server is serving the correct certificate chain, tells you what chain
+you should be serving, and helps you configure your server to serve it.
+Head on over to the site for more information.
+
+index.html is compiled from index.xml by running `make`.
+
+To compile index.html, you need:
+
+  * GNU Make
+  * xsltproc
+  * AT&T Kornshell
+  * SSLMate's tlsconfigguide repository <https://github.com/SSLMate/tlsconfigguide>
+
+By default, the tlsconfigguide repository is expected to be found
+in ../tlsconfigguide, but this can be overridden by setting the
+TLSCONFIGGUIDE variable in config.mk or on the make command line.
+
+whatsmychaincert.com was developed by SSLMate <https://sslmate.com>, a
+service for buying and managing SSL certs from the command line. SSLMate
+saves you time and effort by automating away the error-prone tedium of
+CSR generation, certificate chain assembly, and renewals.
+
+Copyright (C) 2014 Opsmate, Inc.
+Licensed under the MIT/X11 license (see COPYING for details)

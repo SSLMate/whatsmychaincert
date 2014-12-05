@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2014 Opsmate, Inc.
+ *
+ * See COPYING file for license information.
+ */
 #configguide p.select { display: none; }
 #configguide h4 { display: block; margin: 0 0 0.5em 0; }
 #configguide .configguide_snippet { display: block; margin-bottom: 1em; }

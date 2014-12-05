@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2014 Opsmate, Inc.
+ *
+ * See COPYING file for license information.
+ */
 var		whatsmychaincert_endpoint;
 var		current_test_host = null;
 

@@ -1,3 +1,8 @@
+<!--
+	Copyright (C) 2014 Opsmate, Inc.
+
+	See COPYING file for license information.
+-->
 <xsl:stylesheet version="1.0"
 	exclude-result-prefixes="whatsmychaincert xhtml"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"

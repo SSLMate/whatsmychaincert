@@ -1,5 +1,11 @@
 #!/bin/ksh
 
+#
+# Copyright (C) 2014 Opsmate, Inc.
+#
+# See COPYING file for license information.
+#
+
 function escape_xml {
 	print -r -- "$1" | sed \
 		-e "s/&/\&amp;/g" \
