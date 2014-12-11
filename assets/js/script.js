@@ -84,12 +84,24 @@ function add_test_result (host, ip_address, type, text)
 		a.appendChild(document.createTextNode("This"));
 		result.appendChild(a);
 		result.appendChild(document.createTextNode(" is the chain it should be using."));
-	} else if (type == "error") {
+	} else {
 		result.appendChild(document.createTextNode(": "));
 		var error_span = create_element("span");
 		error_span.className = "result_error";
 		error_span.appendChild(document.createTextNode(text));
 		result.appendChild(error_span);
+		if (type == "handshake_error") {
+			result.appendChild(document.createTextNode(" "));
+			var ssllabs_link = create_element("a");
+			ssllabs_link.href = "https://www.ssllabs.com/ssltest/analyze.html?d=" + encodeURIComponent(host);
+			if (ip_address) {
+				ssllabs_link.href += "&s=" + encodeURIComponent(ip_address);
+			}
+			ssllabs_link.href += "&hideResults=on";
+			ssllabs_link.appendChild(document.createTextNode("SSL Labs"));
+			result.appendChild(ssllabs_link);
+			result.appendChild(document.createTextNode(" might be able to tell you what went wrong"));
+		}
 	}
 
 	results.appendChild(result);
@@ -132,7 +144,7 @@ function handle_test_results (host, result)
 					add_test_result(host, result[i].ip_address, "untrusted");
 				}
 			} else {
-				add_test_result(host, result[i].ip_address, "error", result[i].error);
+				add_test_result(host, result[i].ip_address, result[i].error_type + "_error", result[i].error);
 			}
 		}
 	}
