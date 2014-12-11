@@ -153,6 +153,9 @@ function handle_test_error (message)
 function test_form_submit (form)
 {
 	var host = form.host.value;
+	if ("trim" in String.prototype) { // not supported before IE9
+		host = host.trim();
+	}
 	var re = /^https?:\/\/([^\/]*)/;
 	var match = re.exec(host);
 	if (match) {
