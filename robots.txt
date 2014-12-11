@@ -5,4 +5,5 @@ User-agent: panscient.com
 Disallow: /
 
 User-agent: *
-Disallow:
+Disallow: /generate
+Disallow: /test
