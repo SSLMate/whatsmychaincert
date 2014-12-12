@@ -69,6 +69,20 @@ function add_test_result (host, ip_address, type, text)
 		trusted_span.appendChild(document.createTextNode("good"));
 		result.appendChild(trusted_span);
 		result.appendChild(document.createTextNode("."));
+	} else if (type == "expired") {
+		result.appendChild(document.createTextNode(" is "));
+		var expired_span = create_element("span");
+		expired_span.className = "result_expired";
+		expired_span.appendChild(document.createTextNode("expired"));
+		result.appendChild(expired_span);
+		result.appendChild(document.createTextNode(". It won't be trusted by clients regardless of its chain."));
+	} else if (type == "self_signed") {
+		result.appendChild(document.createTextNode(" is "));
+		var self_signed_span = create_element("span");
+		self_signed_span.className = "result_self_signed";
+		self_signed_span.appendChild(document.createTextNode("self-signed"));
+		result.appendChild(self_signed_span);
+		result.appendChild(document.createTextNode(". It doesn't have a chain certificate and will never be trusted by clients."));
 	} else if (type == "untrusted") {
 		result.appendChild(document.createTextNode(" is "));
 		var untrusted_span = create_element("span");
@@ -117,32 +131,48 @@ function clear_test_results ()
 	remove_class(results, "has_results");
 }
 
+function get_result_type (result)
+{
+	if (result.trusted) {
+		return "trusted";
+	} else if (result.trust_error == "self_signed") {
+		return "self_signed";
+	} else if (result.trust_error == "expired") {
+		return "expired";
+	} else {
+		return "untrusted";
+	}
+}
+
+function get_singular_result (results)
+{
+	for (var i = 1; i < results.length; ++i) {
+		if (results[i] != results[i - 1]) {
+			return null;
+		}
+	}
+	return results.length ? results[0] : null;
+}
+
 function handle_test_results (host, result)
 {
-	var all_trusted = true;
-	var all_untrusted = true;
+	var results = [];
 	var has_errors = false;
 	for (var i = 0; i < result.length; ++i) {
 		if ("trusted" in result[i]) {
-			all_trusted = all_trusted && result[i].trusted;
-			all_untrusted = all_untrusted && !result[i].trusted;
+			results.push(get_result_type(result[i]));
 		} else {
 			has_errors = true;
 		}
 	}
 	clear_test_results();
-	if (!has_errors && all_trusted && !all_untrusted) {
-		add_test_result(host, null, "trusted");
-	} else if (!has_errors && all_untrusted && !all_trusted) {
-		add_test_result(host, null, "untrusted");
+	var singular_result = get_singular_result(results);
+	if (!has_errors && singular_result) {
+		add_test_result(host, null, singular_result);
 	} else {
 		for (var i = 0; i < result.length; ++i) {
 			if ("trusted" in result[i]) {
-				if (result[i].trusted) {
-					add_test_result(host, result[i].ip_address, "trusted");
-				} else {
-					add_test_result(host, result[i].ip_address, "untrusted");
-				}
+				add_test_result(host, result[i].ip_address, get_result_type(result[i]));
 			} else {
 				add_test_result(host, result[i].ip_address, result[i].error_type + "_error", result[i].error);
 			}
