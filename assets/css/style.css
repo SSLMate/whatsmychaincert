@@ -19,6 +19,7 @@ h2 { margin: 1em 0 0.4em 0; }
 #root .box p { line-height: 130%; }
 .test input { font-size: 160%; }
 .test input[type=text] { background: #FCFCFC; }
+.test input[disabled] { cursor: wait; }
 .test form { margin: 0 0 0.5em 0; }
 .generate input { font-size: 130%; }
 .generate form { margin: 0.5em 0 0 0; }

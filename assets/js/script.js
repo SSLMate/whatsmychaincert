@@ -45,6 +45,21 @@ function canonical_url (test_host)
 	return url;
 }
 
+function add_testing_message (host)
+{
+	var p = create_element("p");
+	p.appendChild(document.createTextNode("Testing " + host + "... "));
+
+	var cancel_link = create_element("a");
+	cancel_link.href = "javascript:void(0);";
+	cancel_link.onclick = function() { cancel_test(); };
+	cancel_link.appendChild(document.createTextNode("Cancel"));
+	p.appendChild(cancel_link);
+
+	clear_test_results();
+	document.getElementById("test_results").appendChild(p);
+}
+
 function add_test_result (host, ip_address, type, text)
 {
 	var results = document.getElementById("test_results");
@@ -209,11 +224,11 @@ function test_form_submit (form)
 	if (has_push_state) {
 		history.pushState(host, null, canonical_url(host));
 	}
-	do_test(host);
+	do_test(host, form);
 	return false;
 }
 
-function do_test (host)
+function do_test (host, form)
 {
 	var uri = whatsmychaincert_endpoint + "/test?host=" + encodeURIComponent(host);
 	var xhr = new XMLHttpRequest();
@@ -222,6 +237,9 @@ function do_test (host)
 			if (host != current_test_host) {
 				return;
 			}
+			current_test_host = null;
+			form['host'].disabled = false;
+			form['submit_btn'].disabled = false;
 			if (xhr.status != 200) {
 				handle_test_error(xhr.responseText);
 			} else if (xhr.getResponseHeader("Content-Type") != "application/json") {
@@ -234,6 +252,18 @@ function do_test (host)
 	current_test_host = host;
 	xhr.open("GET", uri);
 	xhr.send();
+	add_testing_message(host);
+	form['host'].disabled = true;
+	form['submit_btn'].disabled = true;
+}
+
+function cancel_test ()
+{
+	var test_form = document.getElementById('test_form');
+	test_form['host'].disabled = false;
+	test_form['submit_btn'].disabled = false;
+	clear_test_results();
+	current_test_host = null;
 }
 
 function select_configguide_snippet (snippet)
@@ -256,7 +286,7 @@ function restore_state (test_host)
 	var test_form = document.getElementById('test_form');
 	if (test_host) {
 		test_form.host.value = test_host;
-		do_test(test_host);
+		do_test(test_host, test_form);
 	} else {
 		test_form.reset();
 		clear_test_results();
