@@ -117,6 +117,10 @@
 			<div class="box">
 				<whatsmychaincert:configguide/>
 			</div>
+
+			<p>
+				Don't forget to restart your server software after changing its configuration!
+			</p>
 		</div>
 		<div class="moreinfo">
 			<h2>A Better Way to Buy and Manage SSL Certs</h2>
