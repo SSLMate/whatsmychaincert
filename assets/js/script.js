@@ -78,12 +78,12 @@ function add_test_result (host, ip_address, type, text)
 		result.appendChild(document.createTextNode(")"));
 	}
 	if (type == "trusted") {
-		result.appendChild(document.createTextNode(" is "));
+		result.appendChild(document.createTextNode(" has the "));
 		var trusted_span = create_element("span");
 		trusted_span.className = "result_trusted";
-		trusted_span.appendChild(document.createTextNode("good"));
+		trusted_span.appendChild(document.createTextNode("correct"));
 		result.appendChild(trusted_span);
-		result.appendChild(document.createTextNode("."));
+		result.appendChild(document.createTextNode(" chain."));
 	} else if (type == "expired") {
 		result.appendChild(document.createTextNode(" is "));
 		var expired_span = create_element("span");
