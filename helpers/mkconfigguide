@@ -16,7 +16,7 @@ function escape_xml {
 }
 
 template_dir=${TLSCONFIGGUIDE:?}/templates
-software=$(< ${TLSCONFIGGUIDE:?}/templates.index)
+software=$(sed -e '/^#/ d' -e '/^$/ d' < ${TLSCONFIGGUIDE:?}/templates.index)
 
 print "<!-- mkconfigguide -->"
 print "<form id=\"configguide\" xmlns=\"http://www.w3.org/1999/xhtml\">"
