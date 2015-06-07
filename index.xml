@@ -41,7 +41,7 @@
 			server to serve it.
 		</p>
 
-		<div class="test">
+		<div class="test" id="test">
 			<h2>Test Your Server</h2>
 			<div class="box">
 				<div id="test_results">
@@ -50,24 +50,61 @@
 					<input type="text" name="host" placeholder="example.com" size="25"/>
 					<input type="submit" name="submit_btn" value="Test"/>
 				</form>
-				<p class="instructions">Checks port 443 (HTTPS) by default. For a different port, specify it with the hostname like: <code>example.com:993</code></p>
+				<p class="instructions minor">Checks port 443 (HTTPS) by default. For a different port, specify it with the hostname like: <code>example.com:993</code></p>
 			</div>
 		</div>
-		<div class="generate">
+		<div class="generate" id="generate">
 			<h2>Generate the Correct Chain</h2>
-			<div class="box">
-				<p>
+			<div class="box by_cert">
+				<p class="instructions major">
 					Paste your certificate in the box below to generate the correct chain for it,
 					based on the metadata embedded in the certificate.
 					<a href="https://github.com/SSLMate/mkcertchain">How does this work?</a>
 				</p>
 				<form method="POST" whatsmychaincert:action="generate">
 					<p><textarea name="pem" rows="8" cols="80"></textarea></p>
-					<p><input type="submit" name="submit_btn" value="Generate Chain"/></p>
+					<p class="buttons">
+						<input type="submit" name="submit_btn" value="Generate Chain"/>
+						<label>
+							<input type="checkbox" name="include_root" value="1"/>
+							Include Root Certificate
+						</label>
+					</p>
+				</form>
+			</div>
+			<div class="box by_hostname">
+				<p class="instructions major">
+					Or, enter the hostname of a server to generate the correct chain for its certificate:
+				</p>
+				<form method="GET" whatsmychaincert:action="generate">
+					<p><input type="text" name="host" placeholder="example.com" size="25"/></p>
+					<p class="buttons">
+						<input type="submit" name="submit_btn" value="Generate Chain"/>
+						<label>
+							<input type="checkbox" name="include_root" value="1"/>
+							Include Root Certificate
+						</label>
+					</p>
 				</form>
 			</div>
 		</div>
-		<div class="config">
+		<div class="moreinfo" id="include_root">
+			<h2>Include the Root Certificate?</h2>
+
+			<p>
+				You do <strong>not</strong> need to include the root certificate in
+				your certificate chain, since clients already have the root certificate
+				in their trust stores.  Including the root is inefficient since it
+				increases the size of the SSL handshake.
+			</p>
+			<p>
+				A separate chain that includes the root certificate is sometimes
+				necessary in advanced configurations such as
+				<a href="https://sslmate.com/blog/post/ocsp_stapling_in_apache_and_nginx">OCSP stapling</a>,
+				which is beyond the scope of this guide.
+			</p>
+		</div>
+		<div class="config" id="config">
 			<h2>Configure Your Server</h2>
 
 			<p>

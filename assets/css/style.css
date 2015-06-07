@@ -13,19 +13,28 @@ a, a:link, a:hover, a:visited, a:active { text-decoration: underline; }
 #masthead p.by { margin: 0.5em 0 0 0; }
 h1 { font-size: 250%; text-align: center; margin: 0; }
 h2 { margin: 1em 0 0.4em 0; }
+form { margin: 0; }
+.nobr { white-space: nowrap; }
 #root { max-width: 800px; margin: 0 auto; font-size: 120%; text-align: justify; }
 #root p { line-height: 160%; }
 .box { background: #eee; border-radius: 8px; padding: 0.5em; }
+.box p { margin: 0; }
+.box .instructions.minor { margin-top: 0.5em; }
 #root .box p { line-height: 130%; }
 .test input { font-size: 160%; }
 .test input[type=text] { background: #FCFCFC; }
 .test input[disabled] { cursor: wait; }
-.test form { margin: 0 0 0.5em 0; }
+.generate p.buttons { margin-top: 0.7em; }
 .generate input { font-size: 130%; }
-.generate form { margin: 0.5em 0 0 0; }
-.generate textarea { width: 99%; margin-bottom: 0.7em; background: #FCFCFC; }
-.box p { margin: 0; }
-.instructions { font-size: 70%; }
+.generate textarea { width: 99%; background: #FCFCFC; }
+.generate .by_hostname input[type=text] { font-size: 160%; background: #FCFCFC; }
+/*
+.generate .by_hostname input { font-size: 160%; }
+.generate .by_hostname input[type=text] { background: #FCFCFC; }
+*/
+.generate .box.by_hostname { margin-top: 1em; }
+.box .instructions.major { margin-bottom: 0.5em; }
+.box .instructions.minor { font-size: 70%; }
 code.block { display: block; background: #eee; border-radius: 4px; padding: 0.2em 0.5em; font-size: 90%; text-align: left; }
 .config select { font-size: 110%; }
 
