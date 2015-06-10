@@ -93,15 +93,17 @@
 
 			<p>
 				You do <strong>not</strong> need to include the root certificate in
-				your certificate chain, since clients already have the root certificate
-				in their trust stores.  Including the root is inefficient since it
-				increases the size of the SSL handshake.
+				the certificate chain that you serve, since clients already have
+				the root certificate in their trust stores.  Including the root is
+				inefficient since it increases the size of the SSL handshake.
 			</p>
 			<p>
 				A separate chain that includes the root certificate is sometimes
-				necessary in advanced configurations such as
-				<a href="https://sslmate.com/blog/post/ocsp_stapling_in_apache_and_nginx">OCSP stapling</a>,
-				which is beyond the scope of this guide.
+				used for other purposes, such as
+				<a href="https://sslmate.com/blog/post/ocsp_stapling_in_apache_and_nginx">OCSP stapling</a>.
+				Such advanced configuration is beyond the scope of this guide,
+				although the generator will generate such chains if you
+				check the "Include Root Certificate" box.
 			</p>
 		</div>
 		<div class="config" id="config">
