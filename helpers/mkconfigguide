@@ -49,6 +49,7 @@ do
 	    -e 's|__CERT_PATH__|/path/to/example.com.crt|g' \
 	    -e 's|__CHAIN_PATH__|/path/to/example.com.chain.crt|g' \
 	    -e 's|__CHAINED_PATH__|/path/to/example.com.chained.crt|g' \
+	    -e 's|__COMBINED_PATH__|/path/to/example.com.combined.pem|g' \
 	    < "$template_dir/${name}" | while IFS=$'\n' read -r line
 	do
 		print "\t\t\t<p>$(escape_xml "$line")</p>"

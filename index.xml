@@ -109,6 +109,20 @@
 		<div class="config" id="config">
 			<h2>Configure Your Server</h2>
 
+			<p>
+				Note: some software requires you to put your site's certificate chain
+				(e.g. <code>example.com.chained.crt</code>) and your private key
+				(e.g. <code>example.com.key</code>) in separate files, while other
+				software requires you to put them in the same file.
+			</p>
+
+			<p>
+				You can generate the combined file (<code>example.com.combined.pem</code>) with a command such as:
+			</p>
+			<p>
+				<code class="block">cat example.com.key example.com.chained.crt &gt; example.com.combined.pem</code>
+			</p>
+
 			<div class="box">
 				<whatsmychaincert:configguide/>
 			</div>
