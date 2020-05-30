@@ -120,7 +120,7 @@ function add_test_result (host, ip_address, type, text)
 		result.appendChild(untrusted_span);
 		result.appendChild(document.createTextNode(". "));
 		var a = create_element("a");
-		a.href = whatsmychaincert_endpoint + "/generate?host=" + encodeURIComponent(host);
+		a.href = whatsmychaincert_endpoint + "/generate?include_leaf=1;host=" + encodeURIComponent(host);
 		if (ip_address) {
 			a.href += ";ip_address=" + encodeURIComponent(ip_address);
 		}
