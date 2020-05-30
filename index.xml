@@ -173,7 +173,9 @@
 		<div id="footer">
 			<p>
 				&#xA9; 2020 Opsmate, Inc.
+				<!--
 				<a href="https://github.com/SSLMate">Source code</a>
+				-->
 			</p>
 		</div>
     </div>
