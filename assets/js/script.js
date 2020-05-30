@@ -90,7 +90,7 @@ function add_test_result (host, ip_address, type, text)
 		span.className = "result_trusted_but_expired_chain";
 		span.appendChild(document.createTextNode("expired certificate"));
 		result.appendChild(span);
-		result.appendChild(document.createTextNode(". This chain will work with modern web browsers but may fail with older clients, particularly OpenSSL 1.0.x.  "));
+		result.appendChild(document.createTextNode(". This chain will work with modern web browsers but may fail with older clients, notably OpenSSL 1.0.x.  "));
 		var a = create_element("a");
 		a.href = whatsmychaincert_endpoint + "/generate?include_leaf=1;host=" + encodeURIComponent(host);
 		if (ip_address) {
