@@ -55,6 +55,11 @@
 		</div>
 		<div class="generate" id="generate">
 			<h2>Generate the Correct Chain</h2>
+			<p>
+				The generated chain will include your server's leaf certificate, followed
+				by every required intermediate certificate, optionally followed by the root
+				certificate.
+			</p>
 			<div class="box by_cert">
 				<p class="instructions major">
 					Paste your certificate in the box below to generate the correct chain for it,
@@ -62,6 +67,7 @@
 					<a href="https://github.com/SSLMate/mkcertchain">How does this work?</a>
 				</p>
 				<form method="POST" whatsmychaincert:action="generate">
+					<input type="hidden" name="include_leaf" value="1"/>
 					<p><textarea name="pem" rows="8" cols="80"></textarea></p>
 					<p class="buttons">
 						<input type="submit" name="submit_btn" value="Generate Chain"/>
@@ -77,6 +83,7 @@
 					Or, enter the hostname of a server to generate the correct chain for its certificate:
 				</p>
 				<form method="GET" whatsmychaincert:action="generate">
+					<input type="hidden" name="include_leaf" value="1"/>
 					<p><input type="text" name="host" placeholder="example.com" size="25"/></p>
 					<p class="buttons">
 						<input type="submit" name="submit_btn" value="Generate Chain"/>
