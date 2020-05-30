@@ -84,6 +84,13 @@ function add_test_result (host, ip_address, type, text)
 		trusted_span.appendChild(document.createTextNode("correct"));
 		result.appendChild(trusted_span);
 		result.appendChild(document.createTextNode(" chain."));
+	} else if (type == "trusted_but_expired_chain") {
+		result.appendChild(document.createTextNode(" has a trusted chain containing an "));
+		var span = create_element("span");
+		span.className = "result_trusted_but_expired_chain";
+		span.appendChild(document.createTextNode("expired certificate"));
+		result.appendChild(span);
+		result.appendChild(document.createTextNode(". This chain will work with modern web browsers but may fail with older clients, particularly OpenSSL 1.0.x."));
 	} else if (type == "expired") {
 		result.appendChild(document.createTextNode(" is "));
 		var expired_span = create_element("span");
@@ -149,6 +156,9 @@ function clear_test_results ()
 function get_result_type (result)
 {
 	if (result.trusted) {
+		if (result.has_expired_chain) {
+			return "trusted_but_expired_chain";
+		}
 		return "trusted";
 	} else if (result.trust_error == "self_signed") {
 		return "self_signed";
