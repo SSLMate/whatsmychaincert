@@ -109,50 +109,6 @@
 		<div class="config" id="config">
 			<h2>Configure Your Server</h2>
 
-			<p>
-				Note: some software requires you to put your site's certificate
-				(e.g. <code>example.com.crt</code>)
-				and your chain certificates (e.g. <code>example.com.chain.crt</code>) in separate files, while other
-				software requires you to put your chain certificates <em>after</em>
-				your site's certificate in the same file.
-			</p>
-
-			<p>
-				You can generate the combined file (<code>example.com.chained.crt</code>) with a command such as:
-			</p>
-			<p>
-				<code class="block">cat example.com.crt example.com.chain.crt &gt; example.com.chained.crt</code>
-			</p>
-			<!--
-			-->
-
-			<!--
-			<p>
-				Note: some software requires you to put your site's certificate
-				and your chain certificates in in separate files, while other
-				software requires you to put your chain certificates <em>after</em>
-				your site's certificate in the same file.
-			</p>
-
-			<p>
-				These config snippets use the following example filenames:
-			</p>
-
-			<ul>
-				<li><code>example.com.key</code> &#x2013; your certificate's private key</li>
-				<li><code>example.com.crt</code> &#x2013; your site's certificate, obtained from your certificate vendor</li>
-				<li><code>example.com.chain.crt</code> &#x2013; chain certificates, as generated above</li>
-				<li><code>example.com.chained.crt</code> &#x2013; your site's certificate followed by its chain certificates</li>
-			</ul>
-
-			<p>
-				You can generate <code>example.com.chained.crt</code> with a command such as:
-			</p>
-			<p>
-				<code class="block">cat example.com.crt example.com.chain.crt &gt; example.com.chained.crt</code>
-			</p>
-			-->
-
 			<div class="box">
 				<whatsmychaincert:configguide/>
 			</div>
