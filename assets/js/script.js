@@ -90,7 +90,7 @@ function add_test_result (host, ip_address, type, text)
 		span.className = "result_trusted_but_expired_chain";
 		span.appendChild(document.createTextNode("expired certificate"));
 		result.appendChild(span);
-		result.appendChild(document.createTextNode(". This chain will work with modern web browsers but "));
+		result.appendChild(document.createTextNode(". This chain will work with modern web browsers (they will use a chain to a different trusted root) but "));
 		var a = create_element("a");
 		a.href = "https://www.agwa.name/blog/post/fixing_the_addtrust_root_expiration";
 		a.appendChild(document.createTextNode("may fail with older clients"));
