@@ -64,7 +64,6 @@
 				<p class="instructions major">
 					Paste your certificate in the box below to generate the correct chain for it,
 					based on the metadata embedded in the certificate.
-					<a href="https://github.com/SSLMate/mkcertchain">How does this work?</a>
 				</p>
 				<form method="POST" whatsmychaincert:action="generate">
 					<input type="hidden" name="include_leaf" value="1"/>
