@@ -30,10 +30,9 @@
 			not only your site's certificate, but also one or more intermediate (a.k.a. chain)
 			certificates?  Failure to install the correct chain can cause certificate
 			errors in browsers, driving visitors away from your site.  To complicate matters,
-			browsers cache chain certificates, meaning that an improperly-configured
-			chain could work in some browsers but not others, making this an annoying problem
-			to debug.  <!--And to make matters even worse, many certificate vendors don't tell you
-			about intermediate certificates, or make it needlessly difficult to find them.-->
+			some browsers cache intermediate certificates, or download missing intermediates
+			on-demand, meaning that an improperly-configured chain could work in some browsers
+			but not others, making this an annoying problem to debug.
 		</p>
 		<p>
 			This site tests if your server is serving the correct certificate chain,
